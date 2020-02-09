@@ -5,6 +5,6 @@ const TrackListScreen = () => {
   return <Text style={{ fontSize: 48 }}>Track List Screen</Text>;
 };
 
-const styles = Stylesheet.create({});
+const styles = StyleSheet.create({});
 
 export default TrackListScreen;
