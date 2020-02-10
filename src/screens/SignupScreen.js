@@ -6,7 +6,7 @@ import Spacer from '../components/Spacer';
 const SignupScreen = ({ navigation }) => {
   console.log(navigation);
   return (
-    <>
+    <View style={styles.container}>
       {/* Children of spacer has styling. */}
       <Spacer>
         <Text h3>Sign up with WalkMyPup!</Text>
@@ -17,10 +17,23 @@ const SignupScreen = ({ navigation }) => {
       <Spacer>
         <Button title="Sign Up" />
       </Spacer>
-    </>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+//Removes the header
+SignupScreen.navigationOptions = () => {
+  return {
+    headerShown: false
+  };
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom: 250
+  }
+});
 
 export default SignupScreen;
