@@ -1,3 +1,16 @@
 import createDataContext from './createDataContext';
 
-const authReducer = (state, action);
+//This function only gets called by React directly
+//dispatch function is called.
+const authReducer = (state, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+export const { Provider, Context } = createDataContext(
+  authReducer,
+  {},
+  { isSignedIn: false }
+);
