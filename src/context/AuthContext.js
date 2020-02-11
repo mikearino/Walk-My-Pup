@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext';
+import trackerApi from '../api/tracker';
 
 //This function only gets called by React directly
 //dispatch function is called.
@@ -8,14 +9,19 @@ const authReducer = (state, action) => {
       return state;
   }
 };
-//passing in dispatch
+
 const signup = dispatch => {
-  //This inner function is what is going to be called
-  //from the component.
-  return ({ email, password }) => {
+  return async ({ email, password }) => {
     //Make API request to sign up with email and password
     //If signed up then modify state and say we are authenticated.
     //If signing up fails reflect error somewhere.
+    try {
+      //Call to Api passing in email and password and bind to response
+      const response = await trackerApi.post('/signup', { email, password });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 };
 
