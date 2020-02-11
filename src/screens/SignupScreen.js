@@ -37,7 +37,7 @@ const SignupScreen = ({ navigation }) => {
         <Text style={styles.errorMessage}>{state.errorMessage}</Text>
       ) : null}
       <Spacer>
-        {/* Passing in email and password to sign up which is destructured from 
+        {/* Passing in email and password to sign up which is de-structured from 
         AuthContext, which in turn will run the reducer. */}
         <Button title="Sign Up" onPress={() => signup({ email, password })} />
       </Spacer>

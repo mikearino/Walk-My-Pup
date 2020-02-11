@@ -1,7 +1,7 @@
 import createDataContext from './createDataContext';
 import trackerApi from '../api/tracker';
-import { asyncStorage } from 'react-native';
-import { navigate } from 'react-navigation';
+import { AsyncStorage } from 'react-native';
+import { navigate } from '../navigationRef';
 
 //This function only gets called by React directly
 //dispatch function is called.
@@ -9,7 +9,7 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case 'add_error':
       //Take all properties out of state and add to
-      //this new one. Overwite property to update
+      //this new one. Overwrite property to update
       return { ...state, errorMessage: action.payload };
     case 'signup':
       //Rather than grabbing all state properties, wipe
@@ -38,7 +38,7 @@ const signup = dispatch => async ({ email, password }) => {
     //Update state to add error.
     dispatch({
       type: 'add_error',
-      payload: 'Somthing went wrong with sign up.'
+      payload: 'Something went wrong with sign up.'
     });
   }
 };
