@@ -11,7 +11,7 @@ const authReducer = (state, action) => {
 //passing in dispatch
 const signup = dispatch => {
   //This inner function is what is going to be called
-  //the component.
+  //from the component.
   return ({ email, password }) => {
     //Make API request to sign up with email and password
     //If signed up then modify state and say we are authenticated.
