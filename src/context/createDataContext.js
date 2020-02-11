@@ -1,4 +1,4 @@
-import React, { userReducer } from 'react';
+import React, { useReducer } from 'react';
 
 //export a function that's going to be called with a reducer function,
 //an action object and a default state
@@ -8,7 +8,7 @@ export default (reducer, actions, defaultValue) => {
   const Provider = ({ children }) => {
     //user reducer takes 2 args reducer, which is that case statement,
     //and then also defaultValue which is state
-    const [state, dispatch] = userReducer(reducer, defaultValue);
+    const [state, dispatch] = useReducer(reducer, defaultValue);
 
     const boundActions = {};
     //Loop over all the actions passed in.
