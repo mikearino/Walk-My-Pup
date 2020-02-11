@@ -16,7 +16,7 @@ export default (reducer, actions, defaultValue) => {
     //key value pairs.
     for (let key in actions) {
       //Look up each actions that are being passed in and dispatch.
-      boundActions[key] = action[key](dispatch);
+      boundActions[key] = actions[key](dispatch);
     }
 
     return (

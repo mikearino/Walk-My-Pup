@@ -8,7 +8,7 @@ import SignupScreen from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
-import { Provider as Authprovider, Context } from './src/context/AuthContext';
+import { Provider as AuthProvider } from './src/context/AuthContext';
 
 //switchNavigator == fast shifting of views.
 const switchNavigator = createSwitchNavigator({
@@ -31,8 +31,8 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <Authprovider>
+    <AuthProvider>
       <App />
-    </Authprovider>
+    </AuthProvider>
   );
 };
