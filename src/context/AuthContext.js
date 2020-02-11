@@ -19,26 +19,24 @@ const authReducer = (state, action) => {
   }
 };
 
-const signup = dispatch => {
-  return async ({ email, password }) => {
-    //Make API request to sign up with email and password
-    //If signed up then modify state and say we are authenticated.
-    //If signing up fails reflect error somewhere.
-    try {
-      //Call to Api passing in email and password and bind to response
-      const response = await trackerApi.post('/signup', { email, password });
-      //Stores the token in Async Storage with response.date.token
-      await AsyncStorage.setItem('token', response.data.token);
-      //Once stored, dispatch an action to have a token piece of state.
-      dispatch({ type: 'signup', payload: response.data.token });
-    } catch (err) {
-      //Update state to add error.
-      dispatch({
-        type: 'add_error',
-        payload: 'Somthing went wrong with sign up.'
-      });
-    }
-  };
+const signup = dispatch => async ({ email, password }) => {
+  //Make API request to sign up with email and password
+  //If signed up then modify state and say we are authenticated.
+  //If signing up fails reflect error somewhere.
+  try {
+    //Call to Api passing in email and password and bind to response
+    const response = await trackerApi.post('/signup', { email, password });
+    //Stores the token in Async Storage with response.date.token
+    await AsyncStorage.setItem('token', response.data.token);
+    //Once stored, dispatch an action to have a token piece of state.
+    dispatch({ type: 'signup', payload: response.data.token });
+  } catch (err) {
+    //Update state to add error.
+    dispatch({
+      type: 'add_error',
+      payload: 'Somthing went wrong with sign up.'
+    });
+  }
 };
 
 //Remember whenever dispatch is called React will automatically run
