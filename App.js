@@ -9,6 +9,7 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
+import { setNavigator } from './src/navigationRef';
 
 //switchNavigator == fast shifting of views.
 const switchNavigator = createSwitchNavigator({
@@ -32,7 +33,15 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <AuthProvider>
-      <App />
+      <App
+        ref={() => {
+          // Pass in navigator object then run set
+          //navigator which in turn binds navigation
+          //to a variable called navigator in navigationRef.js
+          //This makes navigation accessable for all files.
+          navigator => setNavigator(navigator);
+        }}
+      />
     </AuthProvider>
   );
 };

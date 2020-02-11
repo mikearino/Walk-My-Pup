@@ -1,6 +1,7 @@
 import createDataContext from './createDataContext';
 import trackerApi from '../api/tracker';
 import { asyncStorage } from 'react-native';
+import { navigate } from 'react-navigation';
 
 //This function only gets called by React directly
 //dispatch function is called.
@@ -30,6 +31,9 @@ const signup = dispatch => async ({ email, password }) => {
     await AsyncStorage.setItem('token', response.data.token);
     //Once stored, dispatch an action to have a token piece of state.
     dispatch({ type: 'signup', payload: response.data.token });
+    //navigate allows for navigation in files that don't normally have
+    //access to navigation.
+    navigate('TrackList');
   } catch (err) {
     //Update state to add error.
     dispatch({
