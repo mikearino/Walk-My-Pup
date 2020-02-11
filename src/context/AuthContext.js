@@ -1,5 +1,6 @@
 import createDataContext from './createDataContext';
 import trackerApi from '../api/tracker';
+import { asyncStorage } from 'react-native';
 
 //This function only gets called by React directly
 //dispatch function is called.
@@ -9,6 +10,10 @@ const authReducer = (state, action) => {
       //Take all properties out of state and add to
       //this new one. Overwite property to update
       return { ...state, errorMessage: action.payload };
+    case 'signup':
+      //Rather than grabbing all state properties, wipe
+      //errorMessage.
+      return { errorMessage: '', token: action.payload };
     default:
       return state;
   }
@@ -22,7 +27,10 @@ const signup = dispatch => {
     try {
       //Call to Api passing in email and password and bind to response
       const response = await trackerApi.post('/signup', { email, password });
-      console.log(response.data);
+      //Stores the token in Async Storage with response.date.token
+      await AsyncStorage.setItem('token', response.data.token);
+      //Once stored, dispatch an action to have a token piece of state.
+      dispatch({ type: 'signup', payload: response.data.token });
     } catch (err) {
       //Update state to add error.
       dispatch({
@@ -53,5 +61,5 @@ export const { Provider, Context } = createDataContext(
   { signin, signout, signup },
   //If error message, print to user inside error message
   //property
-  { isSignedIn: false, errorMessage: '' }
+  { token: null, errorMessage: '' }
 );
