@@ -22,6 +22,17 @@ const authReducer = (state, action) => {
   }
 };
 
+//Try to sign in using credentials from users device.
+const tryLocalSignin = dispatch => async () => {
+  const token = await AsyncStorage.getItem('token');
+  if (token) {
+    //Reusing action.type signin because it will store a token
+    //inside of state.
+    dispatch({ type: 'signin', payload: token });
+    navigate('TrackList');
+  }
+};
+
 const clearErrorMessage = dispatch => () => {
   dispatch({ type: 'clear_error_message' });
 };
