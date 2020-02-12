@@ -11,7 +11,7 @@ const authReducer = (state, action) => {
       //Take all properties out of state and add to
       //this new one. Overwrite property to update
       return { ...state, errorMessage: action.payload };
-    case 'signup':
+    case 'signin':
       //Rather than grabbing all state properties, wipe
       //errorMessage.
       return { errorMessage: '', token: action.payload };
@@ -30,7 +30,7 @@ const signup = dispatch => async ({ email, password }) => {
     //Stores the token in Async Storage with response.date.token
     await AsyncStorage.setItem('token', response.data.token);
     //Once stored, dispatch an action to have a token piece of state.
-    dispatch({ type: 'signup', payload: response.data.token });
+    dispatch({ type: 'signin', payload: response.data.token });
     //navigate allows for navigation in files that don't normally have
     //access to navigation.
     navigate('TrackList');
@@ -45,12 +45,22 @@ const signup = dispatch => async ({ email, password }) => {
 
 //Remember whenever dispatch is called React will automatically run
 //Reducer.
-const signin = dispatch => {
-  return ({ email, password }) => {
-    //Try to sign in.
-    //Handle success by updating state
-    //Handle failure by showing error message (somehow)
-  };
+const signin = dispatch => async ({ email, password }) => {
+  try {
+    const response = await trackerApi.post('/signin', { email, password });
+    await AsyncStorage.setItem('token', response.data.token);
+    dispatch({ type: 'signin', payload: response.data.token });
+    navigate('TrackList');
+  } catch (err) {
+    dispatch({
+      type: 'add_error',
+      payload: 'Something went wrong with sign in.'
+    });
+  }
+
+  //Try to sign in.
+  //Handle success by updating state
+  //Handle failure by showing error message (somehow)
 };
 
 const signout = dispatch => {
