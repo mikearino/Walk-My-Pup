@@ -30,6 +30,9 @@ const tryLocalSignin = dispatch => async () => {
     //inside of state.
     dispatch({ type: 'signin', payload: token });
     navigate('TrackList');
+  } else {
+    //This will default to the signup screen.
+    navigate('Signup');
   }
 };
 
@@ -86,7 +89,7 @@ const signout = dispatch => {
 };
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage },
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin },
   //If error message, print to user inside error message
   //property
   { token: null, errorMessage: '' }
