@@ -15,11 +15,16 @@ const authReducer = (state, action) => {
       //Rather than grabbing all state properties, wipe
       //errorMessage.
       return { errorMessage: '', token: action.payload };
+    case 'clear_error_message':
+      return { ...state, errorMessage: '' };
     default:
       return state;
   }
 };
 
+const clearErrorMessage = dispatch => () => {
+  dispatch({ type: 'clear_error_message' });
+};
 const signup = dispatch => async ({ email, password }) => {
   //Make API request to sign up with email and password
   //If signed up then modify state and say we are authenticated.
@@ -70,7 +75,7 @@ const signout = dispatch => {
 };
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup },
+  { signin, signout, signup, clearErrorMessage },
   //If error message, print to user inside error message
   //property
   { token: null, errorMessage: '' }

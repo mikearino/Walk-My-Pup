@@ -6,7 +6,7 @@ import NavLink from '../components/NavLink';
 const SignupScreen = ({ navigation }) => {
   //De-structure and grab state and sign up by calling
   //useContext hook and passing in AuthContext
-  const { state, signup } = useContext(AuthContext);
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
