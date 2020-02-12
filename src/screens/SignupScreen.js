@@ -16,6 +16,9 @@ const SignupScreen = ({ navigation }) => {
         headerText="Sign Up for WalkMyPup!"
         errorMessage={state.errorMessage}
         submitButtonText="Sign Up"
+        //Take a reference to th signup function. Any time the
+        //onsubmit gets called, call sign up and pass in appropriate args.
+        onSubmit={({ email, password }) => ({ email, password })}
       />
       <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
         <Spacer>
@@ -40,12 +43,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginBottom: 250
-  },
-  errorMessage: {
-    fontSize: 16,
-    color: 'red',
-    marginLeft: 15,
-    marginTop: 15
   },
   link: {
     color: 'blue'
