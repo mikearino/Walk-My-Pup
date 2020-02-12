@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { NavigationEvents } from 'react-navigation';
 import { View, StyleSheet } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
@@ -10,6 +11,7 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <NavigationEvents onWillBlur={clearErrorMessage} />
       <AuthForm
         headerText="Sign Up for WalkMyPup!"
         errorMessage={state.errorMessage}

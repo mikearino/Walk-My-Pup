@@ -10,8 +10,12 @@ const SigninScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Acts as an event listener for navigation */}
-      <NavigationEvents />
+      {/* Acts as an event listener for navigation, you can pass it
+      callback functions as props. */}
+      <NavigationEvents
+        //Called as soon as navigation away from the screen.
+        onWillBlur={clearErrorMessage}
+      />
       <AuthForm
         headerText="Sign in to your account."
         errorMessage={state.errorMessage}
