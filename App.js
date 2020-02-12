@@ -34,7 +34,7 @@ export default () => {
   return (
     <AuthProvider>
       <App
-        // Pass in navigator object then run set
+        //Pass in navigator object then run set
         //navigator which in turn binds navigation
         //to a variable called navigator in navigationRef.js
         //This makes navigation accessible for all files.

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -41,6 +41,9 @@ const SignupScreen = ({ navigation }) => {
         AuthContext, which in turn will run the reducer. */}
         <Button title="Sign Up" onPress={() => signup({ email, password })} />
       </Spacer>
+      <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
+        <Text>Already have an account? Sign in instead</Text>
+      </TouchableOpacity>
     </View>
   );
 };
