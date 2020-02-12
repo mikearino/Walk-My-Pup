@@ -5,11 +5,12 @@ import NavLink from '../components/NavLink';
 
 const SigninScreen = () => {
   return (
-    <View>
-      <AuthForm headerText="Sign in to your account."
-      errorMessage=""
-      onSubmit={()=>{})}
-      submitButtonText="Sign in"
+    <View style={styles.container}>
+      <AuthForm
+        headerText="Sign in to your account."
+        errorMessage=""
+        onSubmit={() => {}}
+        submitButtonText="Sign in"
       />
       <NavLink
         text="Don't have an account? Sign up instead"
@@ -19,6 +20,16 @@ const SigninScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+SigninScreen.navigationOptions = {
+  headerShown: false
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom: 250
+  }
+});
 
 export default SigninScreen;
