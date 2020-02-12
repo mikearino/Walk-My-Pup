@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 //react-native-elements is a library with built up components
 import { Text, Button, Input } from 'react-native-elements';
 import Spacer from './Spacer';
@@ -11,7 +11,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
     <>
       {/* Children of spacer has styling. */}
       <Spacer>
-        <Text h3>headerText</Text>
+        <Text h3>{headerText}</Text>
       </Spacer>
       <Input
         label="Email"
