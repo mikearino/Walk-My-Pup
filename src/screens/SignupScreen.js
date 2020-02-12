@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { NavigationEvents } from 'react-navigation';
 import { View, StyleSheet } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -7,14 +7,7 @@ import NavLink from '../components/NavLink';
 const SignupScreen = ({ navigation }) => {
   //De-structure and grab state and sign up by calling
   //useContext hook and passing in AuthContext
-  const { state, signup, clearErrorMessage, tryLocalSignin } = useContext(
-    AuthContext
-  );
-  //Call function only once
-  useEffect(() => {
-    tryLocalSignin();
-    //[] Indicates to only run the function one time.
-  }, []);
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
