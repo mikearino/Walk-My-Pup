@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 import { navigate } from '../navigationRef';
 
 //This function only gets called by React directly
-//dispatch function is called.
+//when dispatch function is called.
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'add_error':
