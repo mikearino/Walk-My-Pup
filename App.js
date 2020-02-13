@@ -11,7 +11,7 @@ import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
-
+import { Provider as LocationProvider } from './src/context/LocationContext';
 //switchNavigator == fast shifting of views.
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -34,16 +34,19 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <App
-        //Pass in navigator object then run set
-        //navigator which in turn binds navigation
-        //to a variable called navigator in navigationRef.js
-        //This makes navigation accessible for all files.
-        ref={navigator => {
-          setNavigator(navigator);
-        }}
-      />
-    </AuthProvider>
+    //Location Provider will wrap everything.
+    <LocationProvider>
+      <AuthProvider>
+        <App
+          //Pass in navigator object then run set
+          //navigator which in turn binds navigation
+          //to a variable called navigator in navigationRef.js
+          //This makes navigation accessible for all files.
+          ref={navigator => {
+            setNavigator(navigator);
+          }}
+        />
+      </AuthProvider>
+    </LocationProvider>
   );
 };
