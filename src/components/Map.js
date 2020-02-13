@@ -1,10 +1,26 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import MapView from 'react-native-maps';
+//Polyline can be shown inside of MapView.
+import MapView, { Polyline } from 'react-native-maps';
 
 const Map = () => {
-  //Map has to have at least a height to show up.
+  let points = [];
+  for (let i = 0; i < 200; i++) {
+    if (i % 2 === 0) {
+      points.push({
+        latitude: 45.512794 + i * 0.0001,
+        longitude: -122.679565 + i * 0.0001
+      });
+    } else {
+      points.push({
+        latitude: 45.512794 - i * 0.0002,
+        longitude: -122.679565 - i * 0.0004
+      });
+    }
+  }
+
   return (
+    //Map has to have at least a height to show up.
     <MapView
       style={styles.map}
       //What to show when map is rendered.
@@ -16,7 +32,9 @@ const Map = () => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
       }}
-    />
+    >
+      <Polyline coordinates={points} />
+    </MapView>
   );
 };
 
