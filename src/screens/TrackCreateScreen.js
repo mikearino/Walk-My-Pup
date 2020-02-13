@@ -4,14 +4,20 @@ import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import Map from '../components/Map';
 import { SafeAreaView } from 'react-navigation';
-//Asks user for permission to track.
-import { requestPermissionsAsync } from 'expo-location';
+import {
+  requestPermissionsAsync,
+  watchPositionAsync,
+  Accuracy
+} from 'expo-location';
 const TrackCreateScreen = () => {
   //For displaying error to user
   const [err, setErr] = useState(null);
   const startWatching = async () => {
     try {
+      //Asks user for permission to track.
       await requestPermissionsAsync();
+      //Watch users location and see it change over time
+      await watchPositionAsync();
     } catch (e) {
       setErr(e);
     }
