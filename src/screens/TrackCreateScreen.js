@@ -1,4 +1,4 @@
-import '../_mockLocation';
+import './_mockLocation';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
@@ -17,7 +17,17 @@ const TrackCreateScreen = () => {
       //Asks user for permission to track.
       await requestPermissionsAsync();
       //Watch users location and see it change over time
-      await watchPositionAsync();
+      await watchPositionAsync(
+        {
+          //How accurate do you want, be mindful of bat power.
+          accuracy: Accuracy.BestForNavigation,
+          //Updated every second
+          timeInterval: 1000,
+          //Or every ten meters
+          distanceInterval: 10
+        },
+        location => {}
+      );
     } catch (e) {
       setErr(e);
     }
