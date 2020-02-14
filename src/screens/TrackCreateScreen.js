@@ -1,5 +1,5 @@
 import './_mockLocation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import Map from '../components/Map';
@@ -9,7 +9,9 @@ import {
   watchPositionAsync,
   Accuracy
 } from 'expo-location';
+import { Context as LocationContext } from '../context/LocationContext';
 const TrackCreateScreen = () => {
+  const { addLocation } = useContext(LocationContext);
   //For displaying error to user
   const [err, setErr] = useState(null);
   const startWatching = async () => {
@@ -26,7 +28,11 @@ const TrackCreateScreen = () => {
           //Or every ten meters
           distanceInterval: 10
         },
-        location => {}
+        //Callback gets invoked every single time a user changes
+        //location with location object.
+        location => {
+          addLocation(location);
+        }
       );
     } catch (e) {
       setErr(e);
