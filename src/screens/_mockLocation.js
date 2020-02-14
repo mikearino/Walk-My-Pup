@@ -15,6 +15,8 @@ const getLocation = increment => {
       accuracy: 5,
       altitudeAccuracy: 5,
       altitude: 5,
+      //If using physical device, comment out this file and then
+      //grab your coords with a console.log in map.
       longitude: -122.679565 + increment * tenMetersWithDegrees,
       latitude: 45.512794 + increment * tenMetersWithDegrees
     }
