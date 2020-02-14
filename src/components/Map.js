@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Text, StyleSheet, ActivityIndicator } from 'react-native';
 //Polyline can be shown inside of MapView.
-import MapView, { Polyline } from 'react-native-maps';
+import MapView, { Polyline, Circle } from 'react-native-maps';
 import { Context as LocationContext } from '../context/LocationContext';
 
 const Map = () => {
@@ -33,7 +33,17 @@ const Map = () => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
       }}
-    ></MapView>
+    >
+      <Circle
+        //Exact lat/long to draw a circle on the map.
+        center={currentLocation.coords}
+        radius={30}
+        //rgba is color with opacity to it.(border)
+        strokeColor="rgba(158, 158, 255, 1.0)"
+        //inner
+        fillColor="rgba(158, 158, 255, 0.3)"
+      />
+    </MapView>
   );
 };
 
