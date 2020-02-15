@@ -34,4 +34,9 @@ export default () => {
       setErr(e);
     }
   };
+  useEffect(() => {
+    startWatching();
+  }, []);
+  //returns error for track create screen.
+  return [err];
 };
