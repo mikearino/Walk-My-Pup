@@ -6,7 +6,7 @@ import {
 } from 'expo-location';
 
 //This is a custom hook.
-export default () => {
+export default callback => {
   //For displaying error to user
   const [err, setErr] = useState(null);
 
@@ -25,10 +25,8 @@ export default () => {
           distanceInterval: 10
         },
         //Callback gets invoked every single time a user changes
-        //location with location object.
-        location => {
-          addLocation(location);
-        }
+        //location.
+        callback
       );
     } catch (e) {
       setErr(e);
@@ -37,6 +35,7 @@ export default () => {
   useEffect(() => {
     startWatching();
   }, []);
-  //returns error for track create screen.
+  //returns  array with error inside for track create screen.
+  //It's convention for hooks to return inside of an array.
   return [err];
 };
