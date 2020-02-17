@@ -38,10 +38,10 @@ export default () => {
     <LocationProvider>
       <AuthProvider>
         <App
-          //Pass in navigator object then run set
-          //navigator which in turn binds navigation
-          //to a variable called navigator in navigationRef.js
-          //This makes navigation accessible for all files.
+          //Pass in navigator object then run set navigator
+          //which in turn binds navigation to a variable called
+          //navigator in navigationRef.js This makes navigation
+          //accessible for all files.
           ref={navigator => {
             setNavigator(navigator);
           }}

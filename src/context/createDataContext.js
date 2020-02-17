@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 
-//export a function that's going to be called with a reducer function,
+//export function that's going to be called with a reducer function,
 //an action object and a default state
 export default (reducer, actions, defaultValue) => {
   const Context = React.createContext();
