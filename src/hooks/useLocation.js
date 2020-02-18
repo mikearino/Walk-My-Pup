@@ -14,8 +14,10 @@ export default callback => {
     try {
       //Asks user for permission to track.
       await requestPermissionsAsync();
-      //Watch users location and see it change over time
-      await watchPositionAsync(
+      //Watch users location and see it change over time.
+      //Subscriber has a function called remove which will
+      //make sure to stop tracking the users location.
+      const subscriber = await watchPositionAsync(
         {
           //How accurate do you want, be mindful of bat power.
           accuracy: Accuracy.BestForNavigation,
