@@ -10,8 +10,10 @@ import { Context as LocationContext } from '../context/LocationContext';
 const TrackCreateScreen = ({ isFocused }) => {
   const { addLocation } = useContext(LocationContext);
   //Pass in callback function to be ran anytime there is a new
-  //location.
-  const [err] = useLocation(addLocation);
+  //location. First argument is if true, start tracking, if
+  //false, stop tracking altogether. 2nd arg is for any time the
+  //users location changes.
+  const [err] = useLocation(isFocused, addLocation);
   console.log(isFocused);
   return (
     <SafeAreaView forceInset={{ top: 'always' }}>
