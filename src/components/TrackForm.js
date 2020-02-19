@@ -1,13 +1,26 @@
 import React from 'react';
-import { View, Stylesheet } from 'react-native';
-import { TextInput } from 'react-native-elements';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, StyleSheet } from 'react-native';
+import { Input, Button } from 'react-native-elements';
+import Spacer from './Spacer';
 
 const TrackForm = () => {
   return (
-    <View>
-      <TextInput>Name For Track</TextInput>
-      <TouchableOpacity>Record</TouchableOpacity>
-    </View>
+    <>
+      <Spacer>
+        <Input placeholder="Enter Name of Walk" />
+      </Spacer>
+      <Spacer>
+        <Button title="Start Recording" />
+      </Spacer>
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonStyle: {
+    height: 300,
+    margin: 40
+  }
+});
+
+export default TrackForm;
