@@ -18,6 +18,7 @@ const stopRecording = dispatch => () => {};
 const addLocation = dispatch => location => {
   //Dispatch current location from TrackCreateScreen's location
   //callback.
+  console.log('Hi There!');
   dispatch({ type: 'add_current_location', payload: location });
 };
 
