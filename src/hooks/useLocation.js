@@ -50,8 +50,12 @@ export default (shouldTrack, callback) => {
       subscriber.remove();
       setSubscriber(null);
     }
-    startWatching();
-  }, [shouldTrack]);
+    return () => {
+      if (subscriber) {
+        subscriber.remove();
+      }
+    };
+  }, [shouldTrack, callback]);
   //returns  array with error inside for track create screen.
   //It's convention for hooks to return inside of an array.
   return [err];

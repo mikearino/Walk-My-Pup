@@ -25,7 +25,7 @@ const locationReducer = (state, action) => {
 //One function that gets returned with dispatch to run
 //another function.
 //Receives whatever the name has been updated to.
-const ChangeName = dispatch => name => {
+const changeName = dispatch => name => {
   dispatch({ type: 'change_name', payload: name });
 };
 const startRecording = dispatch => () => {
@@ -49,7 +49,7 @@ export const { Context, Provider } = createDataContext(
     startRecording,
     stopRecording,
     addLocation,
-    ChangeName
+    changeName
   },
   { name: '', recording: false, locations: [], currentLocation: null }
 );
