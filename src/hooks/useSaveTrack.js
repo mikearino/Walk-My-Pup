@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Context as TrackContext } from '../context/TrackContext';
 import { Context as LocationContext } from '../context/LocationContext';
-
 //Pull information from LocationContext. Pull action function out of
 //TrackContext, then throw that information into the action function.
 export default () => {
@@ -9,11 +8,13 @@ export default () => {
   //API.
   const { createTrack } = useContext(TrackContext);
   const {
-    state: { locations, name }
+    state: { locations, name },
+    reset
   } = useContext(LocationContext);
 
-  const saveTrack = () => {
-    createTrack(name, locations);
+  const saveTrack = async () => {
+    await createTrack(name, locations);
+    reset();
   };
   //Call save track with whatever name you have and locations and
   //make a request to back end API. Essentially exposing a function that
