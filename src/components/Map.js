@@ -6,7 +6,7 @@ import { Context as LocationContext } from '../context/LocationContext';
 
 const Map = () => {
   const {
-    state: { currentLocation }
+    state: { currentLocation, locations }
   } = useContext(LocationContext);
   //If the current location is not yet available, show a spinner.
   if (!currentLocation) {
@@ -43,6 +43,7 @@ const Map = () => {
         //inner
         fillColor="rgba(158, 158, 255, 0.3)"
       />
+      <Polyline coordinates={locations.map(loc => loc.coords)} />
     </MapView>
   );
 };
